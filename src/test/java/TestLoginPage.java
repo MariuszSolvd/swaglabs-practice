@@ -12,7 +12,7 @@ public class TestLoginPage extends AbstractTest {
     @Test
     public void shouldLogin() {
         LoginPage loginPage = initPage(getDriver(), LoginPage.class);
-        ProductPage productPage = loginPage.login("standard_user", R.TESTDATA.get("correct_password"));
+        ProductPage productPage = loginPage.login(R.TESTDATA.get("standard_user"), R.TESTDATA.get("correct_password"));
         assertTrue(productPage.isPageOpened());
     }
 
@@ -29,6 +29,13 @@ public class TestLoginPage extends AbstractTest {
         LoginPage loginPage = initPage(getDriver(), LoginPage.class);
         loginPage.login("", R.TESTDATA.get("correct_password"));
         assertEquals(loginPage.getErrorMessage(), "Username is required");
+    }
+
+    @Test
+    public void shouldNotLoginMissingPassword() {
+        LoginPage loginPage = initPage(getDriver(), LoginPage.class);
+        loginPage.login(R.TESTDATA.get("standard_user"), "");
+        assertEquals(loginPage.getErrorMessage(), "Password is required");
     }
 }
 
