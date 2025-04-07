@@ -37,5 +37,12 @@ public class TestLoginPage extends AbstractTest {
         loginPage.login(R.TESTDATA.get("standard_user"), "");
         assertEquals(loginPage.getErrorMessage(), "Password is required");
     }
+
+    @Test
+    public void shouldNotLoginLockedUser() {
+        LoginPage loginPage = initPage(getDriver(), LoginPage.class);
+        loginPage.login(R.TESTDATA.get("locked_user"), R.TESTDATA.get("correct_password"));
+        assertEquals(loginPage.getErrorMessage(), "Sorry, this user has been locked out.");
+    }
 }
 
