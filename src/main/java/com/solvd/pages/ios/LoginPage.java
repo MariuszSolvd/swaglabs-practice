@@ -1,7 +1,6 @@
 package com.solvd.pages.ios;
 
 import com.solvd.pages.base.LoginPageBase;
-import com.solvd.pages.base.ProductPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -25,11 +24,18 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public ProductPageBase login(String username, String password) {
+    public void typeUsername(String username) {
         loginForm.type(username);
+    }
+
+    @Override
+    public void typePassword(String password) {
         passwordForm.type(password);
+    }
+
+    @Override
+    public void clickLogin() {
         loginButton.click();
-        return initPage(getDriver(), ProductPageBase.class);
     }
 
     @Override
