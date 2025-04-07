@@ -34,7 +34,7 @@ public class LoginPage extends LoginPageBase {
 
     @Override
     public String getErrorMessage() {
-        return errorMessage.getAttribute("label");
+        return errorMessage.getText();
     }
 
 
