@@ -13,7 +13,7 @@ public class TestLoginPage extends AbstractTest {
     public void loginTest() {
         LoginPageBase loginPageBase = initPage(getDriver(), LoginPageBase.class);
         ProductPageBase productPage = loginPageBase.login(R.TESTDATA.get("standard_user"), R.TESTDATA.get("correct_password"));
-        assertTrue(productPage.isPageOpened());
+        assertTrue(productPage.isPageOpened(),"Did not login to App");
     }
 
     @Test
