@@ -11,13 +11,13 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends LoginPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Username")
-    ExtendedWebElement loginForm;
+    private ExtendedWebElement loginForm;
     @ExtendedFindBy(accessibilityId = "test-Password")
-    ExtendedWebElement passwordForm;
+    private ExtendedWebElement passwordForm;
     @ExtendedFindBy(accessibilityId = "test-LOGIN")
-    ExtendedWebElement loginButton;
+    private ExtendedWebElement loginButton;
     @ExtendedFindBy(iosPredicate = "name == \"test-Error message\"")
-    ExtendedWebElement errorMessage;
+    private ExtendedWebElement errorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);

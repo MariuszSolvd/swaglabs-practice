@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"PRODUCTS\"`]")
-    ExtendedWebElement pageTitle;
+    private ExtendedWebElement pageTitle;
 
     public ProductPage(WebDriver driver) {
         super(driver);
