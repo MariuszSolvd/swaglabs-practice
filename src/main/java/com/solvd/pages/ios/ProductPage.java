@@ -1,19 +1,19 @@
 package com.solvd.pages.ios;
 
-import com.solvd.pages.base.ProductPage;
+import com.solvd.pages.base.ProductPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPage.class)
-public class ProductPageIOS extends ProductPage {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPageBase.class)
+public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"PRODUCTS\"`]")
     ExtendedWebElement pageTitle;
 
-    public ProductPageIOS(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(pageTitle);
     }

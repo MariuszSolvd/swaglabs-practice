@@ -1,14 +1,14 @@
 package com.solvd.pages.ios;
 
-import com.solvd.pages.base.LoginPage;
-import com.solvd.pages.base.ProductPage;
+import com.solvd.pages.base.LoginPageBase;
+import com.solvd.pages.base.ProductPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPage.class)
-public class LoginPageIOS extends LoginPage{
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
+public class LoginPage extends LoginPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Username")
     ExtendedWebElement loginForm;
@@ -19,17 +19,17 @@ public class LoginPageIOS extends LoginPage{
     @ExtendedFindBy(iosPredicate = "name == \"test-Error message\"")
     ExtendedWebElement errorMessage;
 
-    public LoginPageIOS(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginForm);
     }
 
     @Override
-    public ProductPage login(String username, String password) {
+    public ProductPageBase login(String username, String password) {
         loginForm.type(username);
         passwordForm.type(password);
         loginButton.click();
-        return initPage(getDriver(), ProductPage.class);
+        return initPage(getDriver(), ProductPageBase.class);
     }
 
     @Override
