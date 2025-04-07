@@ -10,4 +10,6 @@ public abstract class LoginPage extends AbstractPage {
     }
 
     public abstract ProductPage login(String username, String password);
+
+    public abstract String getErrorMessage();
 }

@@ -16,6 +16,8 @@ public class LoginPageIOS extends LoginPage{
     ExtendedWebElement passwordForm;
     @ExtendedFindBy(accessibilityId = "test-LOGIN")
     ExtendedWebElement loginButton;
+    @ExtendedFindBy(iosPredicate = "name == \"test-Error message\"")
+    ExtendedWebElement errorMessage;
 
     public LoginPageIOS(WebDriver driver) {
         super(driver);
@@ -28,8 +30,11 @@ public class LoginPageIOS extends LoginPage{
         passwordForm.type(password);
         loginButton.click();
         return initPage(getDriver(), ProductPage.class);
+    }
 
-
+    @Override
+    public String getErrorMessage() {
+        return errorMessage.getAttribute("label");
     }
 
 
