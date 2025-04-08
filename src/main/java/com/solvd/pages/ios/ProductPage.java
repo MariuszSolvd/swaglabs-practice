@@ -15,6 +15,15 @@ public class ProductPage extends ProductPageBase {
 
     public ProductPage(WebDriver driver) {
         super(driver);
-        setUiLoadedMarker(pageTitle);
+    }
+
+    @Override
+    public boolean isOpened() {
+        return isOpened(10);
+    }
+
+    @Override
+    public boolean isOpened(int timeout) {
+        return pageTitle.isVisible(timeout);
     }
 }

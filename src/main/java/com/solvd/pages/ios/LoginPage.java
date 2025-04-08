@@ -24,7 +24,16 @@ public class LoginPage extends LoginPageBase {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        setUiLoadedMarker(loginInput);
+    }
+
+    @Override
+    public boolean isOpened() {
+        return isOpened(10);
+    }
+
+    @Override
+    public boolean isOpened(int timeout) {
+        return loginInput.isVisible(timeout);
     }
 
     @Override

@@ -9,5 +9,11 @@ public abstract class CommonPageBase extends AbstractPage {
         super(driver);
     }
 
-    //todo: Header/Footer
+    public boolean isOpened() {
+        throw new UnsupportedOperationException("Method 'isOpened' isn't implemented for current page");
+    }
+
+    public boolean isOpened(int timeout) {
+        throw new UnsupportedOperationException("Method 'isOpened' isn't implemented for current page");
+    }
 }
