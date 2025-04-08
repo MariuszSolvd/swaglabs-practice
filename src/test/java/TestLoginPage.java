@@ -43,7 +43,7 @@ public class TestLoginPage extends AbstractTest {
     public void missingPasswordTest() {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
         assertTrue(loginPage.isOpened(), "Login page is not open");
-        loginPage.typePassword(R.TESTDATA.get("standard_user"));
+        loginPage.typeUsername(R.TESTDATA.get("standard_user"));
         loginPage.clickLoginButton();
         assertEquals(loginPage.getErrorMessage(),
                 AuthError.PASSWORD_REQUIRED.getMessage(),
