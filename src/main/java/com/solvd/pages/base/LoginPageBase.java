@@ -9,18 +9,13 @@ public abstract class LoginPageBase extends AbstractPage {
         super(driver);
     }
 
-    public ProductPageBase login(String username, String password) {
-        typeUsername(username);
-        typePassword(password);
-        clickLogin();
-        return initPage(getDriver(), ProductPageBase.class);
-    }
+    public abstract ProductPageBase login(String username, String password);
 
     public abstract void typeUsername(String username);
 
     public abstract void typePassword(String password);
 
-    public abstract void clickLogin();
+    public abstract ProductPageBase clickLoginButton();
 
     public abstract String getErrorMessage();
 }
