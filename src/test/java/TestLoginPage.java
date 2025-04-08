@@ -1,6 +1,5 @@
 import com.solvd.pages.base.LoginPageBase;
 import com.solvd.pages.base.ProductPageBase;
-import com.solvd.utilis.Constants;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import org.testng.annotations.Test;
@@ -25,7 +24,7 @@ public class TestLoginPage extends AbstractTest {
         loginPage.login("no_user", "no_password");
         assertEquals(loginPage.getErrorMessage(),
                 "Username and password do not match any user in this service.",
-                "'Username and password do not match any user in this service.', " + Constants.ERROR_NOT_SHOWN);
+                "'Username and password do not match any user in this service.', Error message is not shown");
     }
 
     @Test
@@ -35,7 +34,7 @@ public class TestLoginPage extends AbstractTest {
         loginPage.typePassword(R.TESTDATA.get("correct_password"));
         assertEquals(loginPage.getErrorMessage(),
                 "Username is required",
-                "'Username is required', " + Constants.ERROR_NOT_SHOWN);
+                "'Username is required', Error message is not shown");
     }
 
     @Test
@@ -45,7 +44,7 @@ public class TestLoginPage extends AbstractTest {
         loginPage.typePassword(R.TESTDATA.get("standard_user"));
         assertEquals(loginPage.getErrorMessage(),
                 "Password is required",
-                "'Password is required', " + Constants.ERROR_NOT_SHOWN);
+                "'Password is required', Error message is not shown");
     }
 
     @Test
@@ -55,7 +54,7 @@ public class TestLoginPage extends AbstractTest {
         loginPage.login(R.TESTDATA.get("locked_user"), R.TESTDATA.get("correct_password"));
         assertEquals(loginPage.getErrorMessage(),
                 "Sorry, this user has been locked out.",
-                "'Sorry, this user has been locked out.', " + Constants.ERROR_NOT_SHOWN);
+                "'Sorry, this user has been locked out.', Error message is not shown");
     }
 }
 
