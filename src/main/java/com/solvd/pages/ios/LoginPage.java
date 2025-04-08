@@ -33,7 +33,7 @@ public class LoginPage extends LoginPageBase {
 
     @Override
     public boolean isOpened(int timeout) {
-        return loginInput.isVisible(timeout);
+        return loginInput.isElementPresent(timeout);
     }
 
     @Override

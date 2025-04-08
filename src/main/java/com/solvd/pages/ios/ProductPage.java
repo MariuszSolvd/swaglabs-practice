@@ -24,6 +24,6 @@ public class ProductPage extends ProductPageBase {
 
     @Override
     public boolean isOpened(int timeout) {
-        return pageTitle.isVisible(timeout);
+        return pageTitle.isElementNotPresent(timeout);
     }
 }
