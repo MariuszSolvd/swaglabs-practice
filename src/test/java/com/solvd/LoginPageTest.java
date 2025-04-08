@@ -3,7 +3,7 @@ package com.solvd;
 import com.solvd.pages.base.LoginPageBase;
 import com.solvd.pages.base.MenuPageBase;
 import com.solvd.pages.base.ProductPageBase;
-import com.solvd.pages.base.elements.HeaderPageBase;
+import com.solvd.pages.base.elements.HeaderBase;
 import com.solvd.utilis.AuthError;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.utils.R;
@@ -70,7 +70,7 @@ public class LoginPageTest extends AbstractTest {
         assertTrue(loginPage.isOpened(), "Login page is not open");
         ProductPageBase productPage = loginPage.login(R.TESTDATA.get("standard_user"), R.TESTDATA.get("correct_password"));
         assertTrue(productPage.isOpened(), "Product page is not open");
-        HeaderPageBase headerPage = initPage(HeaderPageBase.class);
+        HeaderBase headerPage = initPage(HeaderBase.class);
         MenuPageBase menuPage = headerPage.clickHamburgerButton();
         assertTrue(menuPage.isOpened(), "Menu page is not open");
         loginPage = menuPage.clickLogoutButton();
