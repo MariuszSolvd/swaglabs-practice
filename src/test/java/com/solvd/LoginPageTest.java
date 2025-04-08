@@ -1,3 +1,5 @@
+package com.solvd;
+
 import com.solvd.pages.base.LoginPageBase;
 import com.solvd.pages.base.ProductPageBase;
 import com.solvd.utilis.AuthError;
