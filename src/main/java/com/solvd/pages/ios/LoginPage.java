@@ -11,17 +11,17 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends LoginPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Username")
-    private ExtendedWebElement loginForm;
+    private ExtendedWebElement loginInput;
     @ExtendedFindBy(accessibilityId = "test-Password")
-    private ExtendedWebElement passwordForm;
-    @ExtendedFindBy(accessibilityId = "test-LOGIN")
-    private ExtendedWebElement loginButton;
+    private ExtendedWebElement passwordInput;
     @ExtendedFindBy(iosPredicate = "name == \"test-Error message\"")
     private ExtendedWebElement errorMessage;
+    @ExtendedFindBy(accessibilityId = "test-LOGIN")
+    private ExtendedWebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        setUiLoadedMarker(loginForm);
+        setUiLoadedMarker(loginInput);
     }
 
     @Override
@@ -33,12 +33,12 @@ public class LoginPage extends LoginPageBase {
 
     @Override
     public void typeUsername(String username) {
-        loginForm.type(username);
+        loginInput.type(username);
     }
 
     @Override
     public void typePassword(String password) {
-        passwordForm.type(password);
+        passwordInput.type(password);
     }
 
     @Override
