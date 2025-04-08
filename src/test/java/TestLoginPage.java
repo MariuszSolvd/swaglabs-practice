@@ -29,7 +29,7 @@ public class TestLoginPage extends AbstractTest {
     @Test
     public void missingUsernameTest() {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
-        loginPage.login("", R.TESTDATA.get("correct_password"));
+        loginPage.typePassword(R.TESTDATA.get("correct_password"));
         assertEquals(loginPage.getErrorMessage(),
                 "Username is required",
                 "'Username is required', " + Constants.ERROR_NOT_SHOWN);
@@ -38,7 +38,7 @@ public class TestLoginPage extends AbstractTest {
     @Test
     public void missingPasswordTest() {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("standard_user"), "");
+        loginPage.typePassword(R.TESTDATA.get("standard_user"));
         assertEquals(loginPage.getErrorMessage(),
                 "Password is required",
                 "'Password is required', " + Constants.ERROR_NOT_SHOWN);
