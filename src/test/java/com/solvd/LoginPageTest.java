@@ -65,7 +65,7 @@ public class LoginPageTest extends AbstractTest {
     }
 
     @Test
-    public void logoutUser() {
+    public void logoutUserTest() {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
         assertTrue(loginPage.isOpened(), "Login page is not open");
         ProductPageBase productPage = loginPage.login(R.TESTDATA.get("standard_user"), R.TESTDATA.get("correct_password"));
