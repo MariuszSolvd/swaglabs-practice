@@ -1,7 +1,9 @@
 package com.solvd;
 
 import com.solvd.pages.base.LoginPageBase;
+import com.solvd.pages.base.MenuPageBase;
 import com.solvd.pages.base.ProductPageBase;
+import com.solvd.pages.base.elements.HeaderPageBase;
 import com.solvd.utilis.AuthError;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.utils.R;
@@ -60,6 +62,19 @@ public class LoginPageTest extends AbstractTest {
         assertEquals(loginPage.getErrorMessage(),
                 AuthError.LOCKED_USER.getMessage(),
                 "'Sorry, this user has been locked out.', Error message is not shown");
+    }
+
+    @Test
+    public void logoutUser() {
+        LoginPageBase loginPage = initPage(LoginPageBase.class);
+        assertTrue(loginPage.isOpened(), "Login page is not open");
+        ProductPageBase productPage = loginPage.login(R.TESTDATA.get("standard_user"), R.TESTDATA.get("correct_password"));
+        assertTrue(productPage.isOpened(), "Product page is not open");
+        HeaderPageBase headerPage = initPage(HeaderPageBase.class);
+        MenuPageBase menuPage = headerPage.clickHamburgerButton();
+        assertTrue(menuPage.isOpened(), "Menu page is not open");
+        loginPage = menuPage.clickLogoutButton();
+        assertTrue(loginPage.isOpened(), "Login page is not open");
     }
 }
 
