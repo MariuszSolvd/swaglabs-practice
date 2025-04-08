@@ -19,7 +19,7 @@ public class ProductPage extends ProductPageBase {
 
     @Override
     public boolean isOpened() {
-        return isOpened(10);
+        return isOpened(IS_OPENED_DEFAULT_TIMEOUT);
     }
 
     @Override

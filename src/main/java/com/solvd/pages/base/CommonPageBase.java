@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class CommonPageBase extends AbstractPage {
 
+    protected static final int IS_OPENED_DEFAULT_TIMEOUT = 10;
+
     public CommonPageBase(WebDriver driver) {
         super(driver);
     }
