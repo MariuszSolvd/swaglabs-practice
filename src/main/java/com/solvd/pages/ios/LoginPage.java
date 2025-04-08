@@ -12,10 +12,13 @@ public class LoginPage extends LoginPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Username")
     private ExtendedWebElement loginInput;
+
     @ExtendedFindBy(accessibilityId = "test-Password")
     private ExtendedWebElement passwordInput;
+
     @ExtendedFindBy(iosPredicate = "name == \"test-Error message\"")
     private ExtendedWebElement errorMessage;
+
     @ExtendedFindBy(accessibilityId = "test-LOGIN")
     private ExtendedWebElement loginButton;
 
