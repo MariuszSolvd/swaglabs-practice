@@ -1,5 +1,6 @@
 import com.solvd.pages.base.LoginPageBase;
 import com.solvd.pages.base.ProductPageBase;
+import com.solvd.utilis.AuthError;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class TestLoginPage extends AbstractTest {
         assertTrue(loginPage.isOpened(), "Login page is not open");
         loginPage.login("no_user", "no_password");
         assertEquals(loginPage.getErrorMessage(),
-                "Username and password do not match any user in this service.",
+                AuthError.DO_NOT_MATCH_SERVICE.getMessage(),
                 "'Username and password do not match any user in this service.', Error message is not shown");
     }
 
@@ -32,8 +33,9 @@ public class TestLoginPage extends AbstractTest {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
         assertTrue(loginPage.isOpened(), "Login page is not open");
         loginPage.typePassword(R.TESTDATA.get("correct_password"));
+        loginPage.clickLoginButton();
         assertEquals(loginPage.getErrorMessage(),
-                "Username is required",
+                AuthError.USERNAME_REQUIRED.getMessage(),
                 "'Username is required', Error message is not shown");
     }
 
@@ -42,8 +44,9 @@ public class TestLoginPage extends AbstractTest {
         LoginPageBase loginPage = initPage(LoginPageBase.class);
         assertTrue(loginPage.isOpened(), "Login page is not open");
         loginPage.typePassword(R.TESTDATA.get("standard_user"));
+        loginPage.clickLoginButton();
         assertEquals(loginPage.getErrorMessage(),
-                "Password is required",
+                AuthError.PASSWORD_REQUIRED.getMessage(),
                 "'Password is required', Error message is not shown");
     }
 
@@ -53,7 +56,7 @@ public class TestLoginPage extends AbstractTest {
         assertTrue(loginPage.isOpened(), "Login page is not open");
         loginPage.login(R.TESTDATA.get("locked_user"), R.TESTDATA.get("correct_password"));
         assertEquals(loginPage.getErrorMessage(),
-                "Sorry, this user has been locked out.",
+                AuthError.LOCKED_USER.getMessage(),
                 "'Sorry, this user has been locked out.', Error message is not shown");
     }
 }
