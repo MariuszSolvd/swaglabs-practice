@@ -34,6 +34,10 @@ public class HeaderPage extends HeaderPageBase {
         cartButton.click();
     }
 
+    /*
+    A custom click method was used because the default click() method clicks below the intended clickable location,
+    so an adjustment was necessary.
+    */
     private void clickButton(ExtendedWebElement element) {
         Point point = element.getLocation();
         Dimension dimension = element.getSize();
