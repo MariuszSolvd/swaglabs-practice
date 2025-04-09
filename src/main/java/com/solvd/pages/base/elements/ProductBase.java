@@ -21,4 +21,6 @@ public abstract class ProductBase extends AbstractUIObject {
     public abstract double getPrice();
 
     public abstract void clickAddToCartButton();
+
+    public abstract void clickRemoveFromCartButton();
 }

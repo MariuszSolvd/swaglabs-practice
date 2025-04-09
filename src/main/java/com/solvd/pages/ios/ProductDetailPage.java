@@ -25,6 +25,9 @@ public class ProductDetailPage extends ProductDetailPageBase {
     @ExtendedFindBy(iosPredicate = "name == \"ADD TO CART\"")
     private ExtendedWebElement addToCartButton;
 
+    @ExtendedFindBy(iosPredicate = "name == \"test-REMOVE\"")
+    private ExtendedWebElement removeFromCartButton;
+
 
     public ProductDetailPage(WebDriver driver) {
         super(driver);
@@ -64,6 +67,11 @@ public class ProductDetailPage extends ProductDetailPageBase {
     @Override
     public void clickAddToCartButton() {
         addToCartButton.click();
+    }
+
+    @Override
+    public void clickRemoveFromCartButton() {
+        removeFromCartButton.click();
     }
 
 

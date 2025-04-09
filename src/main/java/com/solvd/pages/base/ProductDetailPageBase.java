@@ -17,4 +17,6 @@ public abstract class ProductDetailPageBase extends CommonPageBase {
     public abstract double getPrice();
 
     public abstract void clickAddToCartButton();
+
+    public abstract void clickRemoveFromCartButton();
 }

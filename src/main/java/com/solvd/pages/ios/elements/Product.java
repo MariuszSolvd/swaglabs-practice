@@ -23,6 +23,9 @@ public class Product extends ProductBase {
     @ExtendedFindBy(iosPredicate = "name == \"ADD TO CART\"")
     private ExtendedWebElement addToCartButton;
 
+    @ExtendedFindBy(iosPredicate = "name == \"test-REMOVE\"")
+    private ExtendedWebElement removeFromCartButton;
+
     public Product(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -51,6 +54,11 @@ public class Product extends ProductBase {
     @Override
     public void clickAddToCartButton() {
         addToCartButton.click();
+    }
+
+    @Override
+    public void clickRemoveFromCartButton() {
+        removeFromCartButton.click();
     }
 
 }
