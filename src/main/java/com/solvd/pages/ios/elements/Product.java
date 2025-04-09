@@ -52,8 +52,18 @@ public class Product extends ProductBase {
     }
 
     @Override
+    public ExtendedWebElement getAddToCartButton() {
+        return addToCartButton;
+    }
+
+    @Override
     public void clickAddToCartButton() {
         addToCartButton.click();
+    }
+
+    @Override
+    public ExtendedWebElement getRemoveFromCartButton() {
+        return removeFromCartButton;
     }
 
     @Override

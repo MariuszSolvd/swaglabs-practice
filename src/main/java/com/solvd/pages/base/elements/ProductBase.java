@@ -1,6 +1,7 @@
 package com.solvd.pages.base.elements;
 
 import com.solvd.pages.base.ProductDetailPageBase;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,12 @@ public abstract class ProductBase extends AbstractUIObject {
 
     public abstract double getPrice();
 
+    public abstract ExtendedWebElement getAddToCartButton();
+
     public abstract void clickAddToCartButton();
 
+    public abstract ExtendedWebElement getRemoveFromCartButton();
+
     public abstract void clickRemoveFromCartButton();
+
 }
