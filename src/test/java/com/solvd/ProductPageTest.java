@@ -4,8 +4,10 @@ import com.solvd.entity.Product;
 import com.solvd.pages.base.ProductDetailPageBase;
 import com.solvd.pages.base.ProductPageBase;
 import com.solvd.pages.base.elements.ProductBase;
+import com.solvd.pages.base.elements.SortBase;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
@@ -31,7 +33,28 @@ public class ProductPageTest extends BaseMobileTest {
 
     @Test
     public void productSortNameAToZTest() {
-        ProductPageBase productPageBase = loginService.loginToApp();
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened");
+        List<Product> sortedProducts = productPage.getProducts()
+                .stream()
+                .sorted(Comparator.comparing(ProductBase::getTitle))
+                .map(productBase ->
+                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortNameAToZ();
+        List<Product> productsAfterSortClick = productPage.getProducts()
+                .stream()
+                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .toList();
+      assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted A to Z!");
+    }
+
+    @Test
+    public void productSortNameZToATest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened");
 
     }
 }
