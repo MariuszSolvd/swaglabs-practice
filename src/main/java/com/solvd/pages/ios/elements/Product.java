@@ -44,8 +44,8 @@ public class Product extends ProductBase {
     }
 
     @Override
-    public String getPrice() {
-        return price.getText();
+    public double getPrice() {
+        return Double.parseDouble(price.getText().replace("$", ""));
     }
 
     @Override

@@ -57,8 +57,8 @@ public class ProductDetailPage extends ProductDetailPageBase {
     }
 
     @Override
-    public String getPrice() {
-        return price.getText();
+    public double getPrice() {
+        return Double.parseDouble(price.getText().replace("$", ""));
     }
 
     @Override
