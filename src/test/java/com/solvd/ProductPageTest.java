@@ -64,10 +64,30 @@ public class ProductPageTest extends BaseMobileTest {
         SortBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
         productPage = sort.clickSortNameZToA();
-        List<Product> productAfterSortClick = productPage.getProducts()
+        List<Product> productsAfterSortClick = productPage.getProducts()
                 .stream()
                 .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
                 .toList();
-        assertEquals(productAfterSortClick, sortedProducts, "Product are not sorted Z to A");
+        assertEquals(productsAfterSortClick, sortedProducts, "Product are not sorted Z to A");
+    }
+
+    @Test
+    public void productSortPriceLowToHighTest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened");
+        List<Product> sortedProducts = productPage.getProducts()
+                .stream()
+                .map(productBase ->
+                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .sorted(Comparator.comparing(Product::price))
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortPriceLowToHigh();
+        List<Product> productsAfterSortClick = productPage.getProducts()
+                .stream()
+                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .toList();
+        assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted Low to High Price!");
     }
 }
