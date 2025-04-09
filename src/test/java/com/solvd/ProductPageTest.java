@@ -90,4 +90,24 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted Low to High Price!");
     }
+
+    @Test
+    public void productSortPriceHighToLowTest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened");
+        List<Product> sortedProducts = productPage.getProducts()
+                .stream()
+                .map(productBase ->
+                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .sorted(Comparator.comparing(Product::price).reversed().thenComparing(Product::title, Comparator.reverseOrder()))
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortPriceHighToLow();
+        List<Product> productsAfterSortClick = productPage.getProducts()
+                .stream()
+                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .toList();
+        assertEquals(productsAfterSortClick, sortedProducts, "Products are not the sorted High to Low Price!");
+    }
 }
