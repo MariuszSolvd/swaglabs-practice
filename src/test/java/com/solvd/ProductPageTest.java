@@ -18,7 +18,7 @@ public class ProductPageTest extends BaseMobileTest {
     @Test(description = "Check if product information are the same before and after click on product")
     public void productsDetailsTest() {
         ProductPageBase productPage = loginService.loginToApp();
-        assertTrue(productPage.isOpened(), "Product page is not opened");
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
         List<? extends ProductBase> products = productPage.getProducts();
         for (ProductBase product : products) {
             Product productFromProductsPage = new Product(product.getImage(), product.getTitle(), product.getPrice());
@@ -34,7 +34,7 @@ public class ProductPageTest extends BaseMobileTest {
     @Test
     public void productSortNameAToZTest() {
         ProductPageBase productPage = loginService.loginToApp();
-        assertTrue(productPage.isOpened(), "Product page is not opened");
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
         List<Product> sortedProducts = productPage.getProducts()
                 .stream()
                 .sorted(Comparator.comparing(ProductBase::getTitle))
@@ -54,7 +54,7 @@ public class ProductPageTest extends BaseMobileTest {
     @Test
     public void productSortNameZToATest() {
         ProductPageBase productPage = loginService.loginToApp();
-        assertTrue(productPage.isOpened(), "Product page is not opened");
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
         List<Product> sortedProducts = productPage.getProducts()
                 .stream()
                 .map(productBase ->
@@ -74,7 +74,7 @@ public class ProductPageTest extends BaseMobileTest {
     @Test
     public void productSortPriceLowToHighTest() {
         ProductPageBase productPage = loginService.loginToApp();
-        assertTrue(productPage.isOpened(), "Product page is not opened");
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
         List<Product> sortedProducts = productPage.getProducts()
                 .stream()
                 .map(productBase ->
@@ -94,7 +94,7 @@ public class ProductPageTest extends BaseMobileTest {
     @Test
     public void productSortPriceHighToLowTest() {
         ProductPageBase productPage = loginService.loginToApp();
-        assertTrue(productPage.isOpened(), "Product page is not opened");
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
         List<Product> sortedProducts = productPage.getProducts()
                 .stream()
                 .map(productBase ->
@@ -109,5 +109,26 @@ public class ProductPageTest extends BaseMobileTest {
                 .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
                 .toList();
         assertEquals(productsAfterSortClick, sortedProducts, "Products are not the sorted High to Low Price!");
+    }
+
+    @Test(description = "Button clicked on ProductsPage does change on Details Product page, and then back on ProductPage")
+    public void productShouldKeepSameButtonTest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
+        List<? extends ProductBase> products = productPage.getProducts();
+        for (ProductBase product : products) {
+            product.clickAddToCartButton();
+            assertTrue(product.getRemoveFromCartButton().isElementPresent(),
+                    "Button didn't change to Remove on product page!");
+            ProductDetailPageBase productDetailPage = product.clickOnProduct();
+            assertTrue(productDetailPage.getRemoveFromCartButton().isElementPresent(),
+                    "Remove button is not present, didn't change accordingly");
+            productDetailPage.clickRemoveFromCartButton();
+            assertTrue(productDetailPage.getAddToCartButton().isElementPresent(),
+                    "Button didn't change to Add To Cart on detail product page!");
+            productDetailPage.clickBackToProductsButton();
+            assertTrue(product.getAddToCartButton().isElementPresent(),
+                    "Add to cart button is not present, didn't change accordingly");
+        }
     }
 }
