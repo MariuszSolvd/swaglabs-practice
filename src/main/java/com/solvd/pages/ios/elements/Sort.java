@@ -27,6 +27,16 @@ public class Sort extends SortBase {
     }
 
     @Override
+    public boolean isOpened() {
+        return isOpened(IS_OPENED_DEFAULT_TIMEOUT);
+    }
+
+    @Override
+    public boolean isOpened(int timeout) {
+        return sortNameAToZButton.isElementPresent(timeout);
+    }
+
+    @Override
     public ProductPageBase clickSortNameAToZ() {
         return clickOnSortButton(sortNameAToZButton);
     }
