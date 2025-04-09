@@ -1,5 +1,6 @@
 package com.solvd.pages.ios.elements;
 
+import com.solvd.pages.base.ProductDetailPageBase;
 import com.solvd.pages.base.elements.ProductBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -24,6 +25,12 @@ public class Product extends ProductBase {
 
     public Product(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
+    }
+
+    @Override
+    public ProductDetailPageBase clickOnProduct() {
+        this.click();
+        return initPage(ProductDetailPageBase.class);
     }
 
     @Override
