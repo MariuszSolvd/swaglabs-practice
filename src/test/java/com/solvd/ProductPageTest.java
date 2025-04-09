@@ -55,6 +55,19 @@ public class ProductPageTest extends BaseMobileTest {
     public void productSortNameZToATest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened");
-
+        List<Product> sortedProducts = productPage.getProducts()
+                .stream()
+                .map(productBase ->
+                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .sorted(Comparator.comparing(Product::title).reversed())
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortNameZToA();
+        List<Product> productAfterSortClick = productPage.getProducts()
+                .stream()
+                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
+                .toList();
+        assertEquals(productAfterSortClick, sortedProducts, "Product are not sorted Z to A");
     }
 }
