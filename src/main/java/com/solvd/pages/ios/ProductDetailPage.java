@@ -31,6 +31,16 @@ public class ProductDetailPage extends ProductDetailPageBase {
     }
 
     @Override
+    public boolean isOpened() {
+        return isOpened(IS_OPENED_DEFAULT_TIMEOUT);
+    }
+
+    @Override
+    public boolean isOpened(int timeout) {
+        return backToProductsButton.isElementPresent(timeout);
+    }
+
+    @Override
     public ProductPageBase clickBackToProductsButton() {
         backToProductsButton.click();
         return initPage(ProductPageBase.class);

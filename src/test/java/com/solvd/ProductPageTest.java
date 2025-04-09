@@ -21,6 +21,7 @@ public class ProductPageTest extends BaseMobileTest {
         for (ProductBase product : products) {
             Product productFromProductsPage = new Product(product.getImage(), product.getTitle(), product.getPrice());
             ProductDetailPageBase productDetailPage = product.clickOnProduct();
+            assertTrue(productDetailPage.isOpened(), "Product detail page is not opened");
             Product productFromDetailPage = new Product(productDetailPage.getImage(),
                     productFromProductsPage.title(), productFromProductsPage.price());
             assertEquals(productFromDetailPage, productFromProductsPage, "Products are not the same!");
@@ -28,4 +29,9 @@ public class ProductPageTest extends BaseMobileTest {
         }
     }
 
+    @Test
+    public void productSortNameAToZTest() {
+        ProductPageBase productPageBase = loginService.loginToApp();
+
+    }
 }
