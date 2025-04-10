@@ -21,13 +21,13 @@ public class ProductPageTest extends BaseMobileTest {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
         int productsNum = productPage.countProducts();
-        for (int i = 1 ; i <= productsNum; i++) {
+        for (int i = 1 ; i < productsNum; i++) {
             ProductBase product = initPage(ProductBase.class);
             Product productFromProductsPage = new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i));
             ProductDetailPageBase productDetailPage = product.clickOnProduct(i);
             assertTrue(productDetailPage.isOpened(), "Product detail page is not opened");
             Product productFromDetailPage = new Product(productDetailPage.getImageUrl(),
-                    productFromProductsPage.title(), productFromProductsPage.price());
+                    productDetailPage.getTitleLabel(), productDetailPage.getPriceLabel());
             assertEquals(productFromDetailPage, productFromProductsPage, "Products are not the same!");
             productDetailPage.clickBackToProductsButton();
         }
@@ -124,19 +124,20 @@ public class ProductPageTest extends BaseMobileTest {
     public void productShouldKeepSameButtonTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum =
-        for (ProductBase product : products) {
-            product.clickAddToCartButton();
-            assertTrue(product.getRemoveFromCartButton().isElementPresent(),
+        int productsNum = productPage.countProducts();
+        ProductBase product = initPage(ProductBase.class);
+        for (int i = 1; i < productsNum; i++) {
+            product.clickAddToCartButton(i);
+            assertTrue(product.isRemoveFromCartButtonPresent(i),
                     "Button didn't change to Remove on product page!");
-            ProductDetailPageBase productDetailPage = product.clickOnProduct();
-            assertTrue(productDetailPage.getRemoveFromCartButton().isElementPresent(),
+            ProductDetailPageBase productDetailPage = product.clickOnProduct(i);
+            assertTrue(productDetailPage.isRemoveFromCartButtonPresent(),
                     "Remove button is not present, didn't change accordingly");
             productDetailPage.clickRemoveFromCartButton();
-            assertTrue(productDetailPage.getAddToCartButton().isElementPresent(),
+            assertTrue(productDetailPage.isAddToCartButtonPresent(),
                     "Button didn't change to Add To Cart on detail product page!");
             productDetailPage.clickBackToProductsButton();
-            assertTrue(product.getAddToCartButton().isElementPresent(),
+            assertTrue(product.isAddToCartButtonPresent(i),
                     "Add to cart button is not present, didn't change accordingly");
         }
     }
