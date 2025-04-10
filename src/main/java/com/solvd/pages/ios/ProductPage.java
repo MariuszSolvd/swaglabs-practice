@@ -5,7 +5,11 @@ import com.solvd.pages.base.elements.SortBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPageBase.class)
@@ -35,6 +39,11 @@ public class ProductPage extends ProductPageBase {
     public SortBase clickOnSortButton() {
         sortButton.click();
         return initPage(SortBase.class);
+    }
+
+    @Override
+    public int countProducts() {
+        return findExtendedWebElements(AppiumBy.iOSNsPredicateString("name == \"test-Item\"")).size();
     }
 
 }

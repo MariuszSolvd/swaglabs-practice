@@ -10,4 +10,6 @@ public abstract class ProductPageBase extends CommonPageBase {
     }
 
     public abstract SortBase clickOnSortButton();
+
+    public abstract int countProducts();
 }
