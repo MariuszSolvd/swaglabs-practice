@@ -43,7 +43,7 @@ public class ProductPage extends ProductPageBase {
 
     @Override
     public int countProducts() {
-        return findExtendedWebElements(AppiumBy.iOSNsPredicateString("name == \"test-Item\"")).size();
+        return findExtendedWebElements(AppiumBy.iOSNsPredicateString("name == \"test-Item\"")).size() + 1;
     }
 
 }
