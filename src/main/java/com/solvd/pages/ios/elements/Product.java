@@ -62,4 +62,14 @@ public class Product extends ProductBase {
         removeFromCartButton.format(index).click();
     }
 
+    @Override
+    public boolean isAddToCartButtonPresent(int index) {
+        return addToCartButton.format(index).isElementPresent();
+    }
+
+    @Override
+    public boolean isRemoveFromCartButtonPresent(int index) {
+        return removeFromCartButton.format(index).isElementPresent();
+    }
+
 }
