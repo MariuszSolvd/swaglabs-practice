@@ -27,7 +27,6 @@ public class ProductPage extends ProductPageBase {
         super(driver);
     }
 
-
     @Override
     public boolean isOpened() {
         return isOpened(IS_OPENED_DEFAULT_TIMEOUT);

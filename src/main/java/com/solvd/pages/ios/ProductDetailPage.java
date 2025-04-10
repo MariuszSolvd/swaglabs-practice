@@ -17,10 +17,10 @@ public class ProductDetailPage extends ProductDetailPageBase {
     private ExtendedWebElement image;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Description\"`]/*[1]")
-    private ExtendedWebElement title;
+    private ExtendedWebElement titleLabel;
 
     @ExtendedFindBy(iosPredicate = "name == \"test-Price\"")
-    private ExtendedWebElement price;
+    private ExtendedWebElement priceLabel;
 
     @ExtendedFindBy(iosPredicate = "name == \"ADD TO CART\"")
     private ExtendedWebElement addToCartButton;
@@ -50,18 +50,18 @@ public class ProductDetailPage extends ProductDetailPageBase {
     }
 
     @Override
-    public String getImage() {
+    public String getImageUrl() {
         return image.getAttribute("name");
     }
 
     @Override
-    public String getTitle() {
-        return title.getText();
+    public String getTitleLabel() {
+        return titleLabel.getText();
     }
 
     @Override
-    public double getPrice() {
-        return Double.parseDouble(price.getText().replace("$", ""));
+    public double getPriceLabel() {
+        return Double.parseDouble(priceLabel.getText().replace("$", ""));
     }
 
     @Override

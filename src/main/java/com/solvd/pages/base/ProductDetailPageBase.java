@@ -11,11 +11,11 @@ public abstract class ProductDetailPageBase extends CommonPageBase {
 
     public abstract ProductPageBase clickBackToProductsButton();
 
-    public abstract String getImage();
+    public abstract String getImageUrl();
 
-    public abstract String getTitle();
+    public abstract String getTitleLabel();
 
-    public abstract double getPrice();
+    public abstract double getPriceLabel();
 
     public abstract ExtendedWebElement getAddToCartButton();
 
