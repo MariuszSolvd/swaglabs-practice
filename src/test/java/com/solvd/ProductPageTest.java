@@ -4,7 +4,7 @@ import com.solvd.entity.Product;
 import com.solvd.pages.base.ProductDetailPageBase;
 import com.solvd.pages.base.ProductPageBase;
 import com.solvd.pages.base.elements.ProductBase;
-import com.solvd.pages.base.elements.SortBase;
+import com.solvd.pages.base.elements.SortBoxBase;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -20,7 +20,7 @@ public class ProductPageTest extends BaseMobileTest {
     public void productsDetailsTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         for (int i = 1 ; i < productsNum; i++) {
             ProductBase product = initPage(ProductBase.class);
             Product productFromProductsPage = new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i));
@@ -37,13 +37,13 @@ public class ProductPageTest extends BaseMobileTest {
     public void productSortNameAToZTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         ProductBase product = initPage(ProductBase.class);
         List<Product> sortedProducts = IntStream.range(1, productsNum).mapToObj(i ->
                 new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
                 .sorted(Comparator.comparing(Product::title))
                 .toList();
-        SortBase sort = productPage.clickOnSortButton();
+        SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
         productPage = sort.clickSortNameAToZ();
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
@@ -58,14 +58,14 @@ public class ProductPageTest extends BaseMobileTest {
     public void productSortNameZToATest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         ProductBase product = initPage(ProductBase.class);
         List<Product> sortedProducts = IntStream.range(1, productsNum)
                 .mapToObj(i ->
                         new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
                 .sorted(Comparator.comparing(Product::title).reversed())
                 .toList();
-        SortBase sort = productPage.clickOnSortButton();
+        SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
         productPage = sort.clickSortNameZToA();
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
@@ -80,14 +80,14 @@ public class ProductPageTest extends BaseMobileTest {
     public void productSortPriceLowToHighTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         ProductBase product = initPage(ProductBase.class);
         List<Product> sortedProducts = IntStream.range(1, productsNum)
                 .mapToObj(i ->
                         new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
                 .sorted(Comparator.comparing(Product::price))
                 .toList();
-        SortBase sort = productPage.clickOnSortButton();
+        SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
         productPage = sort.clickSortPriceLowToHigh();
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
@@ -102,14 +102,14 @@ public class ProductPageTest extends BaseMobileTest {
     public void productSortPriceHighToLowTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         ProductBase product = initPage(ProductBase.class);
         List<Product> sortedProducts = IntStream.range(1, productsNum)
                 .mapToObj(i ->
                         new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
                 .sorted(Comparator.comparing(Product::price).reversed().thenComparing(Product::title, Comparator.reverseOrder()))
                 .toList();
-        SortBase sort = productPage.clickOnSortButton();
+        SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
         productPage = sort.clickSortPriceHighToLow();
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
@@ -124,7 +124,7 @@ public class ProductPageTest extends BaseMobileTest {
     public void productShouldKeepSameButtonTest() {
         ProductPageBase productPage = loginService.loginToApp();
         assertTrue(productPage.isOpened(), "Product page is not opened after login");
-        int productsNum = productPage.countProducts();
+        int productsNum = productPage.getProductCount();
         ProductBase product = initPage(ProductBase.class);
         for (int i = 1; i < productsNum; i++) {
             product.clickAddToCartButton(i);
