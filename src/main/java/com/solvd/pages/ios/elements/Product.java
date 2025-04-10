@@ -7,8 +7,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
-import java.util.List;
-
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductBase.class)
 public class Product extends ProductBase {
 
@@ -64,8 +62,4 @@ public class Product extends ProductBase {
         removeFromCartButton.format(index).click();
     }
 
-    @Override
-    public boolean isProductPresent(int index) {
-        return image.format(index).isElementPresent(2);
-    }
 }

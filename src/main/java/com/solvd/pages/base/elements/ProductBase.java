@@ -23,6 +23,6 @@ public abstract class ProductBase extends AbstractPage {
 
     public abstract void clickRemoveFromCartButton(int index);
 
-    public abstract boolean isProductPresent(int index);
+
 
 }
