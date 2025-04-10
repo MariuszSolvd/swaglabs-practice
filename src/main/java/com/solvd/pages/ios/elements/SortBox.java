@@ -1,14 +1,14 @@
 package com.solvd.pages.ios.elements;
 
 import com.solvd.pages.base.ProductPageBase;
-import com.solvd.pages.base.elements.SortBase;
+import com.solvd.pages.base.elements.SortBoxBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = SortBase.class)
-public class Sort extends SortBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = SortBoxBase.class)
+public class SortBox extends SortBoxBase {
 
     @ExtendedFindBy(iosPredicate = "name == \"Name (A to Z)\"")
     private ExtendedWebElement sortNameAToZButton;
@@ -22,7 +22,7 @@ public class Sort extends SortBase {
     @ExtendedFindBy(iosPredicate = "name == \"Price (high to low)\"")
     private ExtendedWebElement sortPriceHighToLowButton;
 
-    public Sort(WebDriver driver) {
+    public SortBox(WebDriver driver) {
         super(driver);
     }
 

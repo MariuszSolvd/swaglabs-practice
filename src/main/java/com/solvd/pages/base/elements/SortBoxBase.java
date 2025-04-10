@@ -4,9 +4,9 @@ import com.solvd.pages.base.CommonPageBase;
 import com.solvd.pages.base.ProductPageBase;
 import org.openqa.selenium.WebDriver;
 
-public abstract class SortBase extends CommonPageBase {
+public abstract class SortBoxBase extends CommonPageBase {
 
-    public SortBase(WebDriver driver) {
+    public SortBoxBase(WebDriver driver) {
         super(driver);
     }
 
