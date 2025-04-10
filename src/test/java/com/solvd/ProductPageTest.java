@@ -97,26 +97,28 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted Low to High Price!");
     }
-//
-//    @Test
-//    public void productSortPriceHighToLowTest() {
-//        ProductPageBase productPage = loginService.loginToApp();
-//        assertTrue(productPage.isOpened(), "Product page is not opened after login");
-//        List<Product> sortedProducts = productPage.getProducts()
-//                .stream()
-//                .map(productBase ->
-//                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
-//                .sorted(Comparator.comparing(Product::price).reversed().thenComparing(Product::title, Comparator.reverseOrder()))
-//                .toList();
-//        SortBase sort = productPage.clickOnSortButton();
-//        assertTrue(sort.isOpened(), "Sort did not open!");
-//        productPage = sort.clickSortPriceHighToLow();
-//        List<Product> productsAfterSortClick = productPage.getProducts()
-//                .stream()
-//                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
-//                .toList();
-//        assertEquals(productsAfterSortClick, sortedProducts, "Products are not the sorted High to Low Price!");
-//    }
+
+    @Test
+    public void productSortPriceHighToLowTest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
+        int productNum = productPage.countProducts();
+        ProductBase product = initPage(ProductBase.class);
+        List<Product> sortedProducts = IntStream.range(1, productNum)
+                .mapToObj(i ->
+                        new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
+                .sorted(Comparator.comparing(Product::price).reversed().thenComparing(Product::title, Comparator.reverseOrder()))
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortPriceHighToLow();
+        assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
+        List<Product> productsAfterSortClick = IntStream.range(1, productNum)
+                .mapToObj(i ->
+                        new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
+                .toList();
+        assertEquals(productsAfterSortClick, sortedProducts, "Products are not the sorted High to Low Price!");
+    }
 //
 //    @Test(description = "Button clicked on ProductsPage does change on Details Product page, and then back on ProductPage")
 //    public void productShouldKeepSameButtonTest() {
