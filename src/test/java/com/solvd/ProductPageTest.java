@@ -7,8 +7,10 @@ import com.solvd.pages.base.elements.ProductBase;
 import com.solvd.pages.base.elements.SortBase;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
@@ -31,26 +33,27 @@ public class ProductPageTest extends BaseMobileTest {
             productDetailPage.clickBackToProductsButton();
         }
     }
-//
-//    @Test
-//    public void productSortNameAToZTest() {
-//        ProductPageBase productPage = loginService.loginToApp();
-//        assertTrue(productPage.isOpened(), "Product page is not opened after login");
-//        List<Product> sortedProducts = productPage.getProducts()
-//                .stream()
-//                .sorted(Comparator.comparing(ProductBase::getTitle))
-//                .map(productBase ->
-//                        new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
-//                .toList();
-//        SortBase sort = productPage.clickOnSortButton();
-//        assertTrue(sort.isOpened(), "Sort did not open!");
-//        productPage = sort.clickSortNameAToZ();
-//        List<Product> productsAfterSortClick = productPage.getProducts()
-//                .stream()
-//                .map(productBase -> new Product(productBase.getImage(), productBase.getTitle(), productBase.getPrice()))
-//                .toList();
-//      assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted A to Z!");
-//    }
+
+    @Test
+    public void productSortNameAToZTest() {
+        ProductPageBase productPage = loginService.loginToApp();
+        assertTrue(productPage.isOpened(), "Product page is not opened after login");
+        int productNum = productPage.countProducts();
+        ProductBase product = initPage(ProductBase.class);
+        List<Product> sortedProducts = IntStream.range(1, productNum).mapToObj(i ->
+                new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
+                .sorted(Comparator.comparing(Product::title))
+                .toList();
+        SortBase sort = productPage.clickOnSortButton();
+        assertTrue(sort.isOpened(), "Sort did not open!");
+        productPage = sort.clickSortNameAToZ();
+        assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
+        List<Product> productsAfterSortClick = IntStream.range(1, productNum)
+                .mapToObj(i ->
+                        new Product(product.getImageUrl(i), product.getTitle(i), product.getPrice(i)))
+                        .toList();
+      assertEquals(productsAfterSortClick, sortedProducts, "Products are not sorted A to Z!");
+    }
 //
 //    @Test
 //    public void productSortNameZToATest() {
