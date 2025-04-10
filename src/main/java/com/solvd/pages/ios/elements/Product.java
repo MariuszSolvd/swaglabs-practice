@@ -5,70 +5,67 @@ import com.solvd.pages.base.elements.ProductBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+
+import java.util.List;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductBase.class)
 public class Product extends ProductBase {
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeImage")
+    private final String FRAME_LOCATOR = "**/XCUIElementTypeOther[`name == \"test-Item\"`][%d]/";
+
+    @ExtendedFindBy(iosClassChain = FRAME_LOCATOR + "**/XCUIElementTypeImage")
     private ExtendedWebElement image;
 
-    @ExtendedFindBy(iosPredicate = "name == \"test-Item title\"")
-    private ExtendedWebElement title;
+    @ExtendedFindBy(iosClassChain = FRAME_LOCATOR + "**/XCUIElementTypeStaticText[`name == \"test-Item title\"`]")
+    private ExtendedWebElement titleLabel;
 
-    @ExtendedFindBy(iosPredicate = "name == \"test-Price\"")
-    private ExtendedWebElement price;
+    @ExtendedFindBy(iosClassChain = FRAME_LOCATOR + "**/XCUIElementTypeStaticText[`name == \"test-Price\"`]")
+    private ExtendedWebElement priceLabel;
 
-    @ExtendedFindBy(iosPredicate = "name == \"ADD TO CART\"")
+    @ExtendedFindBy(iosClassChain = FRAME_LOCATOR + "**/XCUIElementTypeOther[`name == \"ADD TO CART\"`]")
     private ExtendedWebElement addToCartButton;
 
-    @ExtendedFindBy(iosPredicate = "name == \"test-REMOVE\"")
+    @ExtendedFindBy(iosClassChain = FRAME_LOCATOR + "**/XCUIElementTypeOther[`name == \"test-REMOVE\"`]")
     private ExtendedWebElement removeFromCartButton;
 
-    public Product(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public Product(WebDriver driver) {
+        super(driver);
     }
 
     @Override
-    public ProductDetailPageBase clickOnProduct() {
-        this.click();
+    public ProductDetailPageBase clickOnProduct(int index) {
+        image.format(index).click();
         return initPage(ProductDetailPageBase.class);
     }
 
     @Override
-    public String getImage() {
-        return image.getAttribute("name");
+    public String getImageUrl(int index) {
+        return image.format(index).getAttribute("name");
     }
 
     @Override
-    public String getTitle() {
-        return title.getText();
+    public String getTitle(int index) {
+        return titleLabel.format(index).getText();
     }
 
     @Override
-    public double getPrice() {
-        return Double.parseDouble(price.getText().replace("$", ""));
+    public double getPrice(int index) {
+        return Double.parseDouble(priceLabel.format(index).getText().replace("$", ""));
     }
 
     @Override
-    public ExtendedWebElement getAddToCartButton() {
-        return addToCartButton;
+    public void clickAddToCartButton(int index) {
+        addToCartButton.format(index).click();
     }
 
     @Override
-    public void clickAddToCartButton() {
-        addToCartButton.click();
+    public void clickRemoveFromCartButton(int index) {
+        removeFromCartButton.format(index).click();
     }
 
     @Override
-    public ExtendedWebElement getRemoveFromCartButton() {
-        return removeFromCartButton;
+    public boolean isProductPresent(int index) {
+        return image.format(index).isElementPresent(2);
     }
-
-    @Override
-    public void clickRemoveFromCartButton() {
-        removeFromCartButton.click();
-    }
-
 }

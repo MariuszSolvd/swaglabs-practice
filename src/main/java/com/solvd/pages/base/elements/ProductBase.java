@@ -1,32 +1,28 @@
 package com.solvd.pages.base.elements;
 
 import com.solvd.pages.base.ProductDetailPageBase;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
-import org.openqa.selenium.SearchContext;
+import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 
-public abstract class ProductBase extends AbstractUIObject {
+public abstract class ProductBase extends AbstractPage {
 
-    public ProductBase(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public ProductBase(WebDriver driver) {
+        super(driver);
     }
 
-    public abstract ProductDetailPageBase clickOnProduct();
+    public abstract ProductDetailPageBase clickOnProduct(int index);
 
-    public abstract String getImage();
+    public abstract String getImageUrl(int index);
 
-    public abstract String getTitle();
+    public abstract String getTitle(int index);
 
-    public abstract double getPrice();
+    public abstract double getPrice(int index);
 
-    public abstract ExtendedWebElement getAddToCartButton();
+    public abstract void clickAddToCartButton(int index);
 
-    public abstract void clickAddToCartButton();
+    public abstract void clickRemoveFromCartButton(int index);
 
-    public abstract ExtendedWebElement getRemoveFromCartButton();
-
-    public abstract void clickRemoveFromCartButton();
+    public abstract boolean isProductPresent(int index);
 
 }
