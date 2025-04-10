@@ -1,6 +1,6 @@
 package com.solvd.pages.base;
 
-import com.solvd.pages.base.elements.SortBase;
+import com.solvd.pages.base.elements.SortBoxBase;
 import org.openqa.selenium.WebDriver;
 
 public abstract class ProductPageBase extends CommonPageBase {
@@ -9,7 +9,7 @@ public abstract class ProductPageBase extends CommonPageBase {
         super(driver);
     }
 
-    public abstract SortBase clickOnSortButton();
+    public abstract SortBoxBase clickOnSortButton();
 
-    public abstract int countProducts();
+    public abstract int getProductCount();
 }

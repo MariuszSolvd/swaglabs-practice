@@ -1,12 +1,10 @@
 package com.solvd.pages.ios;
 
 import com.solvd.pages.base.ProductPageBase;
-import com.solvd.pages.base.elements.SortBase;
+import com.solvd.pages.base.elements.SortBoxBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.MobileBy;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
@@ -20,6 +18,9 @@ public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosPredicate = "name == \"test-Modal Selector Button\"")
     private ExtendedWebElement sortButton;
+
+    @ExtendedFindBy(iosPredicate = "name == \"test-Item\"")
+    private List<ExtendedWebElement> productContainer;
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -36,14 +37,14 @@ public class ProductPage extends ProductPageBase {
     }
 
     @Override
-    public SortBase clickOnSortButton() {
+    public SortBoxBase clickOnSortButton() {
         sortButton.click();
-        return initPage(SortBase.class);
+        return initPage(SortBoxBase.class);
     }
 
     @Override
-    public int countProducts() {
-        return findExtendedWebElements(AppiumBy.iOSNsPredicateString("name == \"test-Item\"")).size() + 1;
+    public int getProductCount() {
+        return productContainer.size() + 1;
     }
 
 }
