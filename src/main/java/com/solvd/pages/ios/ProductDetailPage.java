@@ -65,8 +65,8 @@ public class ProductDetailPage extends ProductDetailPageBase {
     }
 
     @Override
-    public ExtendedWebElement getAddToCartButton() {
-        return addToCartButton;
+    public boolean isAddToCartButtonPresent() {
+        return addToCartButton.isElementPresent();
     }
 
     @Override
@@ -75,8 +75,8 @@ public class ProductDetailPage extends ProductDetailPageBase {
     }
 
     @Override
-    public ExtendedWebElement getRemoveFromCartButton() {
-        return removeFromCartButton;
+    public boolean isRemoveFromCartButtonPresent() {
+        return removeFromCartButton.isElementPresent();
     }
 
     @Override

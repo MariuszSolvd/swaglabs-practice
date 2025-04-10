@@ -1,6 +1,5 @@
 package com.solvd.pages.base;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 
 public abstract class ProductDetailPageBase extends CommonPageBase {
@@ -17,11 +16,11 @@ public abstract class ProductDetailPageBase extends CommonPageBase {
 
     public abstract double getPriceLabel();
 
-    public abstract ExtendedWebElement getAddToCartButton();
+    public abstract boolean isAddToCartButtonPresent();
 
     public abstract void clickAddToCartButton();
 
-    public abstract ExtendedWebElement getRemoveFromCartButton();
+    public abstract boolean isRemoveFromCartButtonPresent();
 
     public abstract void clickRemoveFromCartButton();
 }
