@@ -84,5 +84,4 @@ public class ProductDetailPage extends ProductDetailPageBase {
         removeFromCartButton.click();
     }
 
-
 }
