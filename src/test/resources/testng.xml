@@ -5,4 +5,9 @@
             <class name="com.solvd.LoginPageTest"/>
         </classes>
     </test>
+    <test name="Products Testes">
+        <classes>
+            <class name="com.solvd.ProductPageTest"/>
+        </classes>
+    </test>
 </suite>
