@@ -10,17 +10,8 @@ import org.openqa.selenium.WebDriver;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = SortBoxBase.class)
 public class SortBox extends SortBoxBase {
 
-    @ExtendedFindBy(iosPredicate = "name == \"Name (A to Z)\"")
-    private ExtendedWebElement sortNameAToZButton;
-
-    @ExtendedFindBy(iosPredicate = "name == \"Name (Z to A)\"")
-    private ExtendedWebElement sortNameZToAButton;
-
-    @ExtendedFindBy(iosPredicate = "name == \"Price (low to high)\"")
-    private ExtendedWebElement sortPriceLowToHighButton;
-
-    @ExtendedFindBy(iosPredicate = "name == \"Price (high to low)\"")
-    private ExtendedWebElement sortPriceHighToLowButton;
+    @ExtendedFindBy(iosPredicate = "name == \"%s\"")
+    private ExtendedWebElement sortButton;
 
     public SortBox(WebDriver driver) {
         super(driver);
@@ -34,16 +25,14 @@ public class SortBox extends SortBoxBase {
 
     @Override
     public boolean isOpened(int timeout) {
-        return sortNameAToZButton.isElementPresent(timeout);
+
+        return sortButton.format(Sorter.A_TO_Z.getName()).isElementPresent(timeout);
     }
 
     @Override
     public void clickSortButton(Sorter sorter) {
         switch (sorter) {
-            case A_TO_Z -> sortNameAToZButton.click();
-            case Z_TO_A -> sortNameZToAButton.click();
-            case LOW_TO_HIGH -> sortPriceLowToHighButton.click();
-            case HIGH_TO_LOW -> sortPriceHighToLowButton.click();
+            case A_TO_Z, Z_TO_A, LOW_TO_HIGH, HIGH_TO_LOW -> sortButton.format(sorter.getName()).click();
         }
     }
 }
