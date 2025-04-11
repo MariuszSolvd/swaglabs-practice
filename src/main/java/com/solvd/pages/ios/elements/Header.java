@@ -1,7 +1,7 @@
 package com.solvd.pages.ios.elements;
 
 import com.solvd.pages.base.MenuPageBase;
-import com.solvd.pages.base.elements.HeaderPageBase;
+import com.solvd.pages.base.elements.HeaderBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -9,8 +9,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HeaderPageBase.class)
-public class HeaderPage extends HeaderPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HeaderBase.class)
+public class Header extends HeaderBase {
 
     @ExtendedFindBy(accessibilityId = "test-Menu")
     private ExtendedWebElement hamburgerButton;
@@ -19,7 +19,7 @@ public class HeaderPage extends HeaderPageBase {
     private ExtendedWebElement cartButton;
 
 
-    public HeaderPage(WebDriver driver) {
+    public Header(WebDriver driver) {
         super(driver);
     }
 
