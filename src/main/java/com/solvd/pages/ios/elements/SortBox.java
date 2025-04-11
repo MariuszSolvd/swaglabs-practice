@@ -1,7 +1,7 @@
 package com.solvd.pages.ios.elements;
 
-import com.solvd.pages.base.ProductPageBase;
 import com.solvd.pages.base.elements.SortBoxBase;
+import com.solvd.utilis.enums.Sorter;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -26,6 +26,7 @@ public class SortBox extends SortBoxBase {
         super(driver);
     }
 
+
     @Override
     public boolean isOpened() {
         return isOpened(IS_OPENED_DEFAULT_TIMEOUT);
@@ -37,27 +38,12 @@ public class SortBox extends SortBoxBase {
     }
 
     @Override
-    public ProductPageBase clickSortNameAToZ() {
-        return clickOnSortButton(sortNameAToZButton);
-    }
-
-    @Override
-    public ProductPageBase clickSortNameZToA() {
-        return clickOnSortButton(sortNameZToAButton);
-    }
-
-    @Override
-    public ProductPageBase clickSortPriceLowToHigh() {
-        return clickOnSortButton(sortPriceLowToHighButton);
-    }
-
-    @Override
-    public ProductPageBase clickSortPriceHighToLow() {
-        return clickOnSortButton(sortPriceHighToLowButton);
-    }
-
-    private ProductPageBase clickOnSortButton(ExtendedWebElement element) {
-        element.click();
-        return initPage(ProductPageBase.class);
+    public void clickSortButton(Sorter sorter) {
+        switch (sorter) {
+            case A_TO_Z -> sortNameAToZButton.click();
+            case Z_TO_A -> sortNameZToAButton.click();
+            case LOW_TO_HIGH -> sortPriceLowToHighButton.click();
+            case HIGH_TO_LOW -> sortPriceHighToLowButton.click();
+        }
     }
 }

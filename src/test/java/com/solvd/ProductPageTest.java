@@ -5,6 +5,7 @@ import com.solvd.pages.base.ProductDetailPageBase;
 import com.solvd.pages.base.ProductPageBase;
 import com.solvd.pages.base.elements.ProductBase;
 import com.solvd.pages.base.elements.SortBoxBase;
+import com.solvd.utilis.enums.Sorter;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -45,7 +46,7 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
-        productPage = sort.clickSortNameAToZ();
+        sort.clickSortButton(Sorter.A_TO_Z);
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
         List<Product> productsAfterSortClick = IntStream.range(1, productsNum)
                 .mapToObj(i ->
@@ -67,7 +68,7 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
-        productPage = sort.clickSortNameZToA();
+        sort.clickSortButton(Sorter.Z_TO_A);
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
         List<Product> productsAfterSortClick = IntStream.range(1, productsNum)
                 .mapToObj(i ->
@@ -89,7 +90,7 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
-        productPage = sort.clickSortPriceLowToHigh();
+        sort.clickSortButton(Sorter.LOW_TO_HIGH);
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
         List<Product> productsAfterSortClick = IntStream.range(1, productsNum)
                 .mapToObj(i ->
@@ -111,7 +112,7 @@ public class ProductPageTest extends BaseMobileTest {
                 .toList();
         SortBoxBase sort = productPage.clickOnSortButton();
         assertTrue(sort.isOpened(), "Sort did not open!");
-        productPage = sort.clickSortPriceHighToLow();
+        sort.clickSortButton(Sorter.HIGH_TO_LOW);
         assertTrue(productPage.isOpened(), "Product page is not opened after sort option clicked!");
         List<Product> productsAfterSortClick = IntStream.range(1, productsNum)
                 .mapToObj(i ->

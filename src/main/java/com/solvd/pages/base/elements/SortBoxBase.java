@@ -1,7 +1,7 @@
 package com.solvd.pages.base.elements;
 
 import com.solvd.pages.base.CommonPageBase;
-import com.solvd.pages.base.ProductPageBase;
+import com.solvd.utilis.enums.Sorter;
 import org.openqa.selenium.WebDriver;
 
 public abstract class SortBoxBase extends CommonPageBase {
@@ -10,12 +10,6 @@ public abstract class SortBoxBase extends CommonPageBase {
         super(driver);
     }
 
-    public abstract ProductPageBase clickSortNameAToZ();
-
-    public abstract ProductPageBase clickSortNameZToA();
-
-    public abstract ProductPageBase clickSortPriceLowToHigh();
-
-    public abstract ProductPageBase clickSortPriceHighToLow();
+    public abstract void clickSortButton(Sorter sorter);
 
 }
