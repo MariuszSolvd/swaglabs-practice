@@ -9,4 +9,6 @@ public abstract class MenuPageBase extends CommonPageBase{
     }
 
     public abstract LoginPageBase clickLogoutButton();
+
+    public abstract DrawingPageBase clickDrawingButton();
 }
