@@ -9,4 +9,6 @@ public abstract class DrawingPageBase extends CommonPageBase{
     }
 
     public abstract boolean isDrawingScreenVisible();
+
+    public abstract void drawLine(int startX, int starY, int endX, int endY);
 }
